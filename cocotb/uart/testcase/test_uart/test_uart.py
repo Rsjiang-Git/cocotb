@@ -36,7 +36,7 @@ async def test_uart(dut):
     await apb.apb_master.write(0x08,0xaa)
     read_op = await apb.apb_master.read(0x0c)
     cocotb.log.info("read_op = {}".format(read_op))
-    # read_op = await tb.intf.read(0x0000)
+    # read_op = await tb.intf.read(0x0000) 
     ret = returned_val(read_op)
     # assert 0x1 == ret
     
@@ -52,7 +52,7 @@ async def test_uart(dut):
 
     # bytesdata = 0x12345679.to_bytes(len(tb.bus.pwdata), 'little')
     # await tb.intf.read(0x0000, bytesdata)
-    await clk_rst.wait_clkn(200)
+    # await clk_rst.wait_clkn(200)
 
 #     try:
 #         await tb.intf.read(0x0000, bytesdata)
