@@ -1,0 +1,6 @@
+/cocotb/demo
+/cocotb/soc_ral/sim
+/cocotb/soc_ral/sim_lib
+/cocotb/uart/testcase/test_*/*
+!/cocotb/uart/testcase/test_*/test_*.py
+!/cocotb/uart/testcase/test_*/Makefile

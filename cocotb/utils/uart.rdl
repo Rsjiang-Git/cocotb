@@ -1,0 +1,232 @@
+// UART Register Description
+// Version 1.0
+// `include "reg_defines.rdl"
+// `define ADDR_WIDTH 32
+
+
+
+addrmap uart {
+    name = "Universal Asynchronous Receiver/Transmitter";
+    desc = "UART Controller Register Description";
+    //---------------- UART TX Register 1 ----------------//
+    reg  {
+        name = "";
+        desc = "";
+        
+        field {
+            name = "";
+            desc = "";
+            sw = rw;
+            hw = r;
+            reset = 0;
+        } UART_TX_DATA[7:0] ;
+        
+    } uart_data_tx @ 0x00;
+
+
+    reg  {
+        name = "";
+        desc = "";
+        
+        field {
+            name = "7-bit Address Detection";
+            desc = "";
+            sw = r;
+            hw = r;
+            reset = 0;
+        } UART_DATA_RX [7:0] ;
+           
+    } uart_data_rx @ 0x04;
+
+
+    //---------------- Baud Rate Register (BRR) ----------------//
+    reg  {
+        name = "";
+        desc = "";
+        
+        field {
+            name = "";
+            desc = "";
+            sw = rw;
+            hw = r;
+            reset = 10'h152;
+        } DIV [9:0] ;
+           
+    } uart_baud @ 0x08;
+
+
+    reg  {
+        name = "";
+        desc = "";
+
+        field {
+            name = "";
+            desc = "";
+            sw = rw;
+            hw = r;
+            reset = 0;
+        } CHECK [0:0] ;
+
+          field {
+            name = "";
+            desc = "";
+            sw = rw;
+            hw = r;
+            reset = 0;
+        } PARITY [1:1] ;
+
+        field {
+            name = "";
+            desc = "";
+            sw = rw;
+            hw = r;
+            reset = 0;
+        } STOP_BIT [2:2] ;
+
+
+        field {
+            name = "";
+            desc = "";
+            sw = rw;
+            hw = r;
+            reset = 0;
+        } STOP_CHECK [3:3] ;
+
+        
+        field {
+            name = "";
+            desc = "";
+            sw = rw;
+            hw = r;
+            reset = 0;
+        } TXRST [14:14] ;
+
+
+        field {
+            name = "";
+            desc = "";
+            sw = rw;
+            hw = r;
+            reset = 0;
+        } RXRST [15:15] ;
+           
+    } uart_conf @ 0x0C;
+
+
+     reg  {
+        name = "";
+        desc = "";
+        field {
+            name = "";
+            desc = "";
+            sw = rw;
+            hw = r;
+            reset = 0;
+        } rx_line [3:0] ;
+           
+    } uart_rxtrig @ 0x10;
+
+
+    reg  {
+        name = "";
+        desc = "";
+        
+        field {
+            name = "";
+            desc = "";
+            sw = rw;
+            hw = r;
+            reset = 0;
+        } tx_line [3:0] ;       
+    } uart_txtrig @ 0x14;
+
+    
+//   DELAY 
+      reg  {
+        name = "";
+        desc = "";
+        field {
+            name = "";
+            desc = "";
+            sw = rw;
+            hw = r;
+            reset = 0;
+        } DELAY [3:0] ;
+           
+    } uart_delay @ 0x18;
+
+
+
+//  status register
+    reg  {
+        name = "";
+        desc = "";
+        
+        field {
+            name = "";
+            desc = "";
+            sw = r;
+            hw = r;
+            reset = 0;
+        } STOP_ERROR [3:3] ;
+
+        field {
+            name = "";
+            desc = "";
+            sw = r;
+            hw = r;
+            reset = 0;
+        } PARITY_ERROR [2:2] ;
+
+        field {
+            name = "";
+            desc = "";
+            sw = r;
+            hw = r;
+            reset = 0;
+        } RX_LINE_STATUS [1:1] ;
+
+
+        
+        field {
+            name = "";
+            desc = "";
+            sw = r;
+            hw = r;
+            reset = 0;
+        } TX_LINE_STATUS [0:0] ;
+           
+    } uart_status @ 0x1C;
+
+
+    reg {
+        name = "";
+        desc = "";   
+        field {
+            name = "";
+            desc = "";
+            sw = r;
+            hw = r;
+            reset = 0;
+        } NUMBER [4:0] ;    
+    } uxrt_rxfifo_number @ 0x20;
+
+
+    reg {
+        name = "";
+        desc = "";
+        field {
+            name = "";
+            desc = "";
+            sw = r;
+            hw = r;
+            reset = 0;
+        } NUMBER [4:0] ;
+           
+    } uart_txfifo_number @ 0x24;
+
+
+   
+
+
+};

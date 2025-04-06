@@ -1,0 +1,7 @@
+{
+    "python.analysis.extraPaths": [
+        "./cocotb/uart/sequence",
+        "./cocotb/soc_ral",
+        "./cocotb/common"
+    ]
+}
