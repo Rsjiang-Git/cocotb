@@ -1,10 +1,10 @@
 module cocotb_top (
 
 
-        input wire clk,
-        input wire rst_,
-        input wire clk26m  ,
-        input wire rst26m_ ,
+        input wire clk        ,
+        input wire rst_       ,
+        input wire clk26m     ,
+        input wire rst26m_    ,
 
         input wire s_apb_psel,
         input wire s_apb_penable,
@@ -39,6 +39,10 @@ module cocotb_top (
            .prdata_o   (s_apb_prdata  )
   );
   
+
+
+
+
 // initial begin
 //     $fsdbDumpfile("tb.fsdb");
 //     $fsdbDumpvars;
