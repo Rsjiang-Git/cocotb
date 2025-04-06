@@ -13,7 +13,7 @@ TOPLEVEL_LANG ?= verilog
 SIM ?= verilator
 TOPLEVEL ?= cocotb_top
 MODULE ?= test_uart
-WAVES ?= 1
+WAVES ?= 0
 
 
 EXTRA_ARGS += -f $(PROJ_ROOT)/cocotb/filelist/filelist.f
@@ -54,7 +54,7 @@ check:
 	@echo "Verilog Sources: $(VERILOG_SOURCES)"
 	@echo "Coverage Enabled: $(COVERAGE_ENABLED)"
     
-    
+
 cov:
 	urg -dir $(SIM_BUILD)/coverage_data -report coverage_report
 	@echo "Coverage report generated: file://$(PWD)/coverage_report/dashboard.html"
