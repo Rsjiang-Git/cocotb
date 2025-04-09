@@ -4,4 +4,4 @@
 /cocotb/uart/testcase/test_*/*
 !/cocotb/uart/testcase/test_*/test_*.py
 !/cocotb/uart/testcase/test_*/Makefile
-__pycache__/
+/cocotb/soc_ral/reg_model/__pycache__
