@@ -18,36 +18,35 @@ COCOTB_HDL_TIMEPRECISION  := ps
 TOPLEVEL      ?= cocotb_top
 MODULE        ?= test_uart
 PMD           := $(shell pwd)
-COVERAGE_ENABLED ?= 0
+COVERAGE_ENABLED ?= off
 
-ifeq ($(COVERAGE_ENABLED),1)
-    COVERAGE_FLAGS := -cm line+cond+tgl+fsm+branch+assert \
-                     -cm_name $(MODULE)  \
-                     -cm_dir  $(PMD)/../result/$(MODULE) \
-                     -cm_hier $(PMD)/hier.cfg
-else
-    COVERAGE_FLAGS :=
-endif
+
+
+COVERAGE_OPTS   = -cm line+cond+tgl+fsm+branch+assert
+COVERAGE_NAME   = -cm_name $(MODULE)
+COVERAGE_DIR    = -cm_dir $(PMD)/../result/$(MODULE)
+COVERAGE_HIER   = -cm_hier $(PMD)/hier.cfg
+COVERAGE_ARGS   = $(COVERAGE_OPTS) $(COVERAGE_NAME) $(COVERAGE_DIR) $(COVERAGE_HIER)
 
 
 COMPILE_ARGS += +vcs+lic+wait -kdb -lca +nospecify     \
                -debug_access+all +define+XM_VENDOR_PRE_SIM    \
                -f $(PROJ_ROOT)/cocotb/filelist/filelist.f
 
-SIM_ARGS += $(COVERAGE_FLAGS)     \
-        -l $(SIM_BUILD)/simulation.log \
+SIM_ARGS += -l $(SIM_BUILD)/simulation.log \
             +fsdb_autoflush +fsdb+sequential
+
+ifeq ($(COVERAGE_ENABLED),off)
+COMPILE_ARGS += $(COVERAGE_ARGS)
+SIM_ARGS     += $(COVERAGE_ARGS)
+endif
+
 
 VERILOG_SOURCES += $(PROJ_ROOT)/cocotb/tb/cocotb_top.v
 
-
-
-
 include $(shell cocotb-config --makefiles)/Makefile.sim
 
-# ======================
-# 8. Verdi 调试目标
-# ======================
+
 .PHONY: verdi verdi_cov
 
 verdi:
@@ -59,7 +58,7 @@ verdi_cov:
 
 cov_report:
 	urg -dir $(CM_DIR) -report coverage_report
-	@echo "覆盖率报告生成在: coverage_report"
+	
 
 
 # # 清理构建
