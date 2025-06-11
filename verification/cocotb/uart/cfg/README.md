@@ -1,0 +1,1 @@
+### cocotb 中如果使用 await timer（10，unit="ns"）做延时，会存在 segment  fault的情况，怎么来构造异步时钟

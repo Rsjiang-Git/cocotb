@@ -1,0 +1,31 @@
+#只收集port
+begin tgl(portsonly)
+   +module mid
+end
+#收集line+ports的tgl+cond
+begin line+tgl(portsonly)+cond
+  +module mid
+end
+
++tree dut
+-moduletree IP1
+-moduletree IP2
+-moduletree IP3
+ 
+begin tgl(portsonly)
++module IP3
+end
+
++tree soc_top
++tree soc_top.u_ddr
+
+begin tgl
+  -moduletree soc_top      # 禁用所有子模块Toggle
+  +module soc_top          # 启用顶层Toggle
+  +module soc_top.u_ddr    # 启用DDR接口Toggle
+  -module soc_top.ref_clk  # 排除参考时钟
+end
+# 每次启动之前都要启动source ，并影响其它终端，只影响当前的终端
+/usr/local/python3.12/bin/python3.12 -m venv ~/cocotb_env
+source ~/cocotb_env/bin/activate
+
