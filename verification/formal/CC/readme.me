@@ -1,0 +1,98 @@
+二、配置表格模板
+GPIO复用配置表
+MCU实例路径	外设顶层实例名	信号名	源端名	目的端名	复用值	输出使能	输入使能	方向
+u_mcu_top.u_apb2_per_top	u_spi1_top	spi1_mosi_signal	chip_top_gpio_12	spi1_mosi_input	5	spi1_oe	spi1_ie	input
+u_mcu_top.u_apb2_per_top	u_spi1_top	spi1_miso_signal	spi1_miso_output	chip_top_gpio_13	5	spi1_oe		
+u_mcu_top.u_apb1_per_top	u_i2c1_top	i2c1_sda_signal	chip_top_gpio_14	i2c1_sda_io	4	i2c1_oe	i2c1_ie	input
+u_mcu_top.u_apb1_per_top	u_i2c1_top	i2c1_scl_signal	chip_top_gpio_15	i2c1_scl_io	4	i2c1_oe	i2c1_ie	input
+u_mcu_top1	u_uart1_top	uart1_tx_signal	uart1_tx_output	chip_top_gpio_16	7	1		
+u_mcu_top1	u_uart1_top	uart1_rx_signal	chip_top_gpio_17	uart1_rx_input	7		uart1_ie	input
+详细填写示例
+字段	SPI MOSI示例	SPI MISO示例	I2C SDA示例
+1. MCU实例路径	u_mcu_top.u_apb2_per_top	u_mcu_top.u_apb2_per_top	u_mcu_top.u_apb1_per_top
+2. 外设顶层实例名	u_spi1_top	u_spi1_top	u_i2c1_top
+3. 信号名	spi1_mosi_signal	spi1_miso_signal	i2c1_sda_signal
+4. 源端名	chip_top_gpio_12	spi1_miso_output	chip_top_gpio_14
+5. 目的端名	spi1_mosi_input	chip_top_gpio_13	i2c1_sda_io
+6. 复用值	5	5	4
+7. 输出使能	spi1_oe	spi1_oe	i2c1_oe
+8. 输入使能	spi1_ie		i2c1_ie
+9. 方向	input		input
+三、填写规则详解
+3.1 MCU实例路径规则
+text
+规则: <mcu_instance>.<peripheral_bus_instance>
+
+示例:
+- 只有MCU: u_mcu_top
+- MCU1实例: u_mcu_top1
+- APB2外设总线: u_mcu_top.u_apb2_per_top
+- AHB1外设总线: u_mcu_top.u_ahb1_per_top
+3.2 信号命名规则
+markdown
+信号名格式建议: <module_name>_<signal_name>_signal
+
+要求:
+1. 同一复用功能的所有信号使用相同的信号名
+2. 必须保证全局唯一性，避免与其他模块冲突
+3. 信号名不需要与RTL信号名相同，但应有明确含义
+
+示例:
+- SPI1 MOSI: spi1_mosi_signal
+- I2C1 SCL: i2c1_scl_signal
+- UART1 TX: uart1_tx_signal
+3.3 方向判定规则
+信号类型	源端名	目的端名	方向填写
+输入信号	chip_top中的GPIO	外设模块输入端口	input
+输出信号	外设模块输出端口	chip_top中的GPIO	(不填或留空)
+双向信号	双向处理，需要填写输入和输出使能		input
+3.4 使能信号填写规则
+markdown
+输出使能(OE):
+- 输出信号或双向信号: 必须填写OE信号名
+- 输入信号: 不填写
+- 若无OE信号: 填写数字"1"
+
+输入使能(IE):
+- 仅当模块存在IE信号时填写
+- 若不存在IE信号: 不填写
+- 输入信号通常需要IE
+四、配置示例文件
+SPI1模块完整配置示例
+MCU实例路径	外设顶层实例名	信号名	源端名	目的端名	复用值	输出使能	输入使能	方向
+u_mcu_top.u_apb2_per_top	u_spi1_top	spi1_all_pins	chip_top_gpio_12	spi1_mosi_i	5	spi1_oe	spi1_ie	input
+u_mcu_top.u_apb2_per_top	u_spi1_top	spi1_all_pins	spi1_miso_o	chip_top_gpio_13	5	spi1_oe		
+u_mcu_top.u_apb2_per_top	u_spi1_top	spi1_all_pins	chip_top_gpio_14	spi1_sck_i	5	spi1_oe	spi1_ie	input
+u_mcu_top.u_apb2_per_top	u_spi1_top	spi1_all_pins	chip_top_gpio_15	spi1_ss_i	5	spi1_oe	spi1_ie	input
+I2C1模块完整配置示例
+MCU实例路径	外设顶层实例名	信号名	源端名	目的端名	复用值	输出使能	输入使能	方向
+u_mcu_top.u_apb1_per_top	u_i2c1_top	i2c1_sda_signal	chip_top_gpio_20	i2c1_sda_io	4	i2c1_oe	i2c1_ie	input
+u_mcu_top.u_apb1_per_top	u_i2c1_top	i2c1_scl_signal	chip_top_gpio_21	i2c1_scl_io	4	i2c1_oe	i2c1_ie	input
+UART1模块完整配置示例
+MCU实例路径	外设顶层实例名	信号名	源端名	目的端名	复用值	输出使能	输入使能	方向
+u_mcu_top1	u_uart1_top	uart1_tx_signal	uart1_txd_o	chip_top_gpio_22	7	1		
+u_mcu_top1	u_uart1_top	uart1_rx_signal	chip_top_gpio_23	uart1_rxd_i	7		uart1_ie	input
+五、注意事项
+一致性要求：源端名、目的端名、输出使能、输入使能必须与RTL代码中的信号名完全一致
+
+信号名唯一性：不同模块的信号名不能重复，建议使用"模块名_功能_信号"的命名方式
+
+复用值正确性：复用值必须与硬件设计文档中的AF值一致
+
+空白单元格：不允许有空白单元格，如果不需要填写应明确标记为"不填"或使用特定标记
+
+方向字段：只有输入信号需要填写"input"，输出信号留空
+
+六、自动化脚本生成建议
+基于此表格格式，可以自动生成以下内容：
+
+GPIO复用约束文件
+
+引脚映射配置文件
+
+形式验证约束
+
+RTL连接检查脚本
+
+此文档格式可以直接导入Excel或CSV文件进行批量处理。
+
