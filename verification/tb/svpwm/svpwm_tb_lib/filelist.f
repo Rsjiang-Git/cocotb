@@ -1,0 +1,13 @@
+$TB_DIR/svpwm_agt_pkg/svpwm_if.gen.sv
++incdir+$TB_DIR/svpwm_agt_pkg
+$TB_DIR/svpwm_agt_pkg/svpwm_agt_pkg.gen.sv
++incdir+$TB_DIR/svpwm_ral_pkg
+$TB_DIR/svpwm_ral_pkg/svpwm_ral_pkg.gen.sv
++incdir+$TB_DIR/svpwm_env_pkg
+$TB_DIR/svpwm_env_pkg/svpwm_env_pkg.gen.sv
++incdir+$TB_DIR/svpwm_seq_lib_pkg
+$TB_DIR/svpwm_seq_lib_pkg/svpwm_seq_lib_pkg.gen.sv
++incdir+$TB_DIR/svpwm_test_pkg
+$TB_DIR/svpwm_test_pkg/svpwm_test_pkg.gen.sv
++incdir+$TB_DIR/svpwm_tb_lib
+$TB_DIR/svpwm_tb_lib/tb.gen.sv

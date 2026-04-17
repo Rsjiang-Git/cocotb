@@ -1,0 +1,13 @@
+$TB_DIR/sdp_to_hsl_agt_pkg/sdp_to_hsl_if.gen.sv
++incdir+$TB_DIR/sdp_to_hsl_agt_pkg
+$TB_DIR/sdp_to_hsl_agt_pkg/sdp_to_hsl_agt_pkg.gen.sv
++incdir+$TB_DIR/sdp_to_hsl_ral_pkg
+$TB_DIR/sdp_to_hsl_ral_pkg/sdp_to_hsl_ral_pkg.gen.sv
++incdir+$TB_DIR/sdp_to_hsl_env_pkg
+$TB_DIR/sdp_to_hsl_env_pkg/sdp_to_hsl_env_pkg.gen.sv
++incdir+$TB_DIR/sdp_to_hsl_seq_lib_pkg
+$TB_DIR/sdp_to_hsl_seq_lib_pkg/sdp_to_hsl_seq_lib_pkg.gen.sv
++incdir+$TB_DIR/sdp_to_hsl_test_pkg
+$TB_DIR/sdp_to_hsl_test_pkg/sdp_to_hsl_test_pkg.gen.sv
++incdir+$TB_DIR/sdp_to_hsl_tb_lib
+$TB_DIR/sdp_to_hsl_tb_lib/tb.gen.sv

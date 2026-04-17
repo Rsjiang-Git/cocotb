@@ -1,0 +1,97 @@
+{
+    "sdp_to_hsl_agt_pkg": {
+        "description": "sdp_to_hsl agent package",
+        "type": "agt_pkg",
+        "vars": {
+            "pkg_name": "sdp_to_hsl_agt_pkg",
+            "import_pkgs": [],
+            "agent_name": "sdp_to_hsl",
+            "drv_type": "pull",
+            "drv_export_type": "block",
+            "mon2cov_con_method": "analysis_port"
+        }
+    },
+    "sdp_to_hsl_env_pkg": {
+        "description": "sdp_to_hsl env package",
+        "type": "env_pkg",
+        "vars": {
+            "pkg_name": "sdp_to_hsl_env_pkg",
+            "import_pkgs": [
+                "sdp_to_hsl_agt_pkg",
+                "ral_pkg"
+            ],
+            "env_name": "sdp_to_hsl_env",
+            "env_childs": {
+                "m_sdp_to_hsl_agt": "sdp_to_hsl_agt",
+                "ahb_system_env": "svt_ahb_system_env"
+            },
+            "scb_name": "sdp_to_hsl_scb",
+            "vsqr_name": "sdp_to_hsl_vsqr",
+            "mst_action": "sdp_to_hsl_item",
+            "slv_action": "sdp_to_hsl_item",
+            "scb_item": "sdp_to_hsl_item",
+            "use_syoscb_array": "Flase",
+            "has_regmodel": "True",
+            "ral_block_name": "sdp_to_hsl_block",
+            "reg_agt_name": "m_sdp_to_hsl_agt",
+            "mon2cov_con_method": "analysis_port"
+        }
+    },
+    "sdp_to_hsl_ral_pkg": {
+        "description": "sdp_to_hsl ral package",
+        "type": "ral_pkg",
+        "vars": {
+            "pkg_name": "sdp_to_hsl_ral_pkg"
+        }
+    },
+    "sdp_to_hsl_seq_lib_pkg": {
+        "description": "sdp_to_hsl seq lib package",
+        "type": "seq_lib_pkg",
+        "vars": {
+            "pkg_name": "sdp_to_hsl_seq_lib_pkg",
+            "import_pkgs": [
+                "sdp_to_hsl_agt_pkg",
+                "sdp_to_hsl_env_pkg"
+            ],
+            "seq_lib_name": "sdp_to_hsl_seq_lib",
+            "seq_name": "sdp_to_hsl_read_seq",
+            "vseq_name": "sdp_to_hsl_vseq",
+            "vsqr_name": "sdp_to_hsl_vsqr",
+            "item_type": "sdp_to_hsl_item"
+        }
+    },
+    "sdp_to_hsl_test_pkg": {
+        "description": "sdp_to_hsl test package",
+        "type": "test_pkg",
+        "vars": {
+            "pkg_name": "sdp_to_hsl_test_pkg",
+            "import_pkgs": [
+                "sdp_to_hsl_env_pkg",
+                "sdp_to_hsl_seq_lib_pkg"
+            ],
+            "test_name": "base_test",
+            "env_name": "sdp_to_hsl_env",
+            "vseq_name": "sdp_to_hsl_vseq",
+            "seq_start_method": "start_task"
+        }
+    },
+    "sdp_to_hsl_tb_lib": {
+        "description": "sdp_to_hsl test package",
+        "type": "tb_lib",
+        "vars": {
+            "pkg_name": "sdp_to_hsl_tb_lib",
+            "import_pkgs": [
+                "sdp_to_hsl_test_pkg"
+            ],
+            "if_name": "sdp_to_hsl_if",
+            "filelist_pkgs": [
+                "sdp_to_hsl_agt_pkg",
+                "sdp_to_hsl_ral_pkg",
+                "sdp_to_hsl_env_pkg",
+                "sdp_to_hsl_seq_lib_pkg",
+                "sdp_to_hsl_test_pkg",
+                "sdp_to_hsl_tb_lib"
+            ]
+        }
+    }
+}

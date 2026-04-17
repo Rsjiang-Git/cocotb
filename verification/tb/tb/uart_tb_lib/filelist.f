@@ -1,0 +1,16 @@
+$TB_DIR/uart_agt_pkg/uart_if.gen.sv
++incdir+$TB_DIR/uart_agt_pkg
+$TB_DIR/uart_agt_pkg/uart_agt_pkg.gen.sv
++incdir+$TB_DIR/uart_ral_pkg
+$TB_DIR/uart_ral_pkg/uart_ral_pkg.gen.sv
++incdir+$SYOSCB_HOME/uvm_syoscb/src
+$SYOSCB_HOME/uvm_syoscb/lib/pk_utils_uvm.sv
+$SYOSCB_HOME/uvm_syoscb/src/pk_syoscb.sv
++incdir+$TB_DIR/uart_env_pkg
+$TB_DIR/uart_env_pkg/uart_env_pkg.gen.sv
++incdir+$TB_DIR/uart_seq_lib_pkg
+$TB_DIR/uart_seq_lib_pkg/uart_seq_lib_pkg.gen.sv
++incdir+$TB_DIR/uart_test_pkg
+$TB_DIR/uart_test_pkg/uart_test_pkg.gen.sv
++incdir+$TB_DIR/uart_tb_lib
+$TB_DIR/uart_tb_lib/tb.gen.sv

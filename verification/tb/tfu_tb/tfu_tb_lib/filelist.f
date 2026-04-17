@@ -1,0 +1,16 @@
+$TB_DIR/tfu_agt_pkg/tfu_if.gen.sv
++incdir+$TB_DIR/tfu_agt_pkg
+$TB_DIR/tfu_agt_pkg/tfu_agt_pkg.gen.sv
++incdir+$TB_DIR/tfu_ral_pkg
+$TB_DIR/tfu_ral_pkg/tfu_ral_pkg.gen.sv
++incdir+$SYOSCB_HOME/uvm_syoscb/src
+$SYOSCB_HOME/uvm_syoscb/lib/pk_utils_uvm.sv
+$SYOSCB_HOME/uvm_syoscb/src/pk_syoscb.sv
++incdir+$TB_DIR/tfu_env_pkg
+$TB_DIR/tfu_env_pkg/tfu_env_pkg.gen.sv
++incdir+$TB_DIR/tfu_seq_lib_pkg
+$TB_DIR/tfu_seq_lib_pkg/tfu_seq_lib_pkg.gen.sv
++incdir+$TB_DIR/tfu_test_pkg
+$TB_DIR/tfu_test_pkg/tfu_test_pkg.gen.sv
++incdir+$TB_DIR/tfu_tb_lib
+$TB_DIR/tfu_tb_lib/tb.gen.sv
